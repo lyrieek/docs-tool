@@ -1,0 +1,26 @@
+{
+	"name": "docs-tools",
+	"version": "4.7.1",
+	"description": "Markdown Documentation generator.",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lyrieek/docs-tool.git"
+	},
+	"main": "lib/docs-tools.js",
+	"unpkg": "lib/docs-tools.min.js",
+	"files": [
+		"lib",
+		"src",
+		"themes"
+	],
+	"scripts": {
+		"dev": "node server"
+	},
+	"dependencies": {
+		"marked": "^0.3.12"
+	},
+	"devDependencies": {
+		"live-server": "^1.2.0"
+	}
+}
