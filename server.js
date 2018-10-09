@@ -29,13 +29,13 @@ const build = () => {
 		})
 		.then(function(bundle) {
 			var dest = 'lib/' + (opts.output || opts.input)
-
 			bundle.write({
 				format: 'iife',
 				file: dest,
 				name: opts.name,
 				strict: false
-			})
+			});
+			console.info("Build completion!\n");
 		})
 		.catch(function(err) {
 			console.error(err)
@@ -51,7 +51,7 @@ chokidar.watch([opts.input], {
 		pollInterval: 100
 	}
 }).on('change', event => {
-	console.log(event);
+	console.log("Change: "+event);
 	build();
 });
 
