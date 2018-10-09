@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Doc-Tool Test</title>
+		<script type="text/javascript" src="./lib/docs-tool.js"></script>
+		<script type="text/javascript">
+			window.document.onloadend = function(){
+				const content = document.getElementById("mdInput");
+				const dt = new DocsTool(content);
+				dt.preview(document.getElementById("mdPreview"));
+			}
+			new DocsTool();
+		</script>
+	</head>
+	<body>
+		<div id="header">
+			<h1>MarkDown文档解析器</h1>
+		</div>
+
+		<div id="container">
+			<div style="float:left;clear:right;width:45%">
+				<h4>Input</h4>
+				<textarea id="mdInput" cols="100" rows="35">
+## MarkDown文档解析器
+> [Github](https://github.com/lyrieek/docs-tool)
+``` shell
+	git clone https://github.com/lyrieek/docs-tool.git
+```
+MarkDown与`HTML`之间的转换
+				</textarea>
+			</div>
+			<div style="float:right;width:45%;">
+				<h4>Preview</h4>
+				<div id="mdPreview"></div>
+			</div>
+		</div>
+	</body>
+</html>

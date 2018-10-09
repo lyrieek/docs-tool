@@ -1,4 +1,11 @@
-console.log(1);
-console.log((e) => alert(e));
+export class DocsTool{
 
-console.log(1);
+  constructor(content){
+    this.content = content;
+  }
+
+  preview(elem){
+    elem.innerHTML = "Loading...";
+  }
+
+}
