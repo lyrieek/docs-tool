@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="./lib/docs-tool.js"></script>
 		<script type="text/javascript">
 			window.onload = function(){
-				const content = document.getElementById("mdInput");
+				const content = document.getElementById("mdInput").value;
 				const dt = new DocsTool(content);
 				dt.preview(document.getElementById("mdPreview"));
 			}

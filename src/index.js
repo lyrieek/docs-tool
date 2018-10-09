@@ -1,12 +1,28 @@
 export default class DocsTool{
 
   constructor(content){
-    this.content = content;
+    this.content = content || '';
+    this.result = '';
+    this.analysisEnd = false;
+  }
+
+  analysis(){
+    if (this.analysisEnd) {
+      return;
+    }
+    this.result = '';
+    this.content.split('\n').map((e) => {
+      this.result += '<p>';
+      this.result += e;
+      this.result += '</p>';
+    });
+    this.analysisEnd = true;
   }
 
   preview(elem){
     elem.innerHTML = "Loading...";
-    elem.innerHTML = this.content;
+    this.analysis();
+    elem.innerHTML = this.result;
   }
 
 }
