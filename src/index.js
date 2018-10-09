@@ -1,4 +1,4 @@
-export class DocsTool{
+export default class DocsTool{
 
   constructor(content){
     this.content = content;
@@ -6,6 +6,7 @@ export class DocsTool{
 
   preview(elem){
     elem.innerHTML = "Loading...";
+    elem.innerHTML = this.content;
   }
 
 }
