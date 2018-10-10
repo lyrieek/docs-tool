@@ -1,28 +1,35 @@
-export default class DocsTool{
+import parser from './parser'
 
-  constructor(content){
-    this.content = content || '';
-    this.result = '';
-    this.analysisEnd = false;
-  }
+export default class DocsTool {
 
-  analysis(){
-    if (this.analysisEnd) {
-      return;
-    }
-    this.result = '';
-    this.content.split('\n').map((e) => {
-      this.result += '<p>';
-      this.result += e;
-      this.result += '</p>';
-    });
-    this.analysisEnd = true;
-  }
+	constructor(content) {
+		this.content = content || '';
+		this.result = '';
+		this.analysisEnd = false;
+	}
 
-  preview(elem){
-    elem.innerHTML = "Loading...";
-    this.analysis();
-    elem.innerHTML = this.result;
-  }
+	analysis() {
+		if (this.analysisEnd) {
+			return;
+		}
+		this.result = '';
+		this.content.split('\n').map((e) => {
+			for(let parserItem in parser){
+				if (e.match(parserItem)) {
+					return this.result += parser[parserItem](e);
+				}
+			}
+			this.result += '<p>';
+			this.result += e;
+			this.result += '</p>';
+		});
+		this.analysisEnd = true;
+	}
+
+	preview(elem) {
+		elem.innerHTML = "Loading...";
+		this.analysis();
+		elem.innerHTML = this.result;
+	}
 
 }
