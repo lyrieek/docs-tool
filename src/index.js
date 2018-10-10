@@ -8,22 +8,64 @@ export default class DocsTool {
 		this.analysisEnd = false;
 	}
 
+	wrap(content, labelName) {
+		return `<${labelName}>${content}</${labelName}>`;
+	}
+
 	analysis() {
 		if (this.analysisEnd) {
 			return;
 		}
+		let specialItem = null; //special function
 		this.result = '';
-		this.content.split('\n').map((e) => {
-			for(let parserItem in parser){
-				if (e.match(parserItem)) {
-					return this.result += parser[parserItem](e);
+		const $parser = this.splitParser();
+		this.content.split('\n').map((text) => {
+			for (let i in $parser) {
+				const item = $parser[i];
+				if (specialItem) {
+					if (specialItem.special(text)) {
+						return (this.result += specialItem.method(specialItem.content))
+							&& (specialItem = null);
+					}
+					return specialItem.content += text + '\n';
 				}
+				if (!(item.matchResult = text.match(item.match))) {
+					continue;
+				}
+				if (item.special) {
+					item.content = '';
+					return specialItem = item;
+				}
+				return this.result += item.method(text);
 			}
-			this.result += '<p>';
-			this.result += e;
-			this.result += '</p>';
+			this.result += `<p>${text}</p>`;
 		});
 		this.analysisEnd = true;
+	}
+
+	splitParser() {
+		const parserList = [];
+		for (let item in parser) {
+			let parserItem = {
+				//param
+				matchResult: item.matchResult, //匹配结果
+				//output
+				match: item, //表达式
+				method: parser[item], //解析方法
+				special: null, //需要特别处理的函数
+				mode: 'standard' //[!不可配置,会被覆盖]{standard:一个函数完事,simple:套标签,full:重写parserItem}
+			}
+			if (typeof parser[item] === 'object') {
+				parserItem = parser[item];
+				parserItem.match = parserItem.match || item;
+				parserItem.mode = 'full';
+			} else if (typeof parser[item] === 'string') {
+				parserItem.method = (text) => this.wrap(text.substring(parserItem.matchResult[0].length), parser[item]);
+				parserItem.mode = 'simple';
+			}
+			parserList.push(parserItem)
+		}
+		return parserList;
 	}
 
 	preview(elem) {
