@@ -10,8 +10,11 @@ export default {
 			<code style="white-space: pre;">${text}</code>
 		</div>`
 	},
-	"`([\\S|\\s])+`": function(text) {
+	"`((?!`)[\\S|\\s])+`": function(text) {
 		return text.replace(new RegExp(this.match), (item) => '<b>' + item.substring(1,item.length-1) + '</b>');
+	},
+	"\\*((?!\\*)[\\S|\\s])+\\*": function(text) {
+		return text.replace(new RegExp(this.match), (item) => '<i>' + item.substring(1,item.length-1) + '</i>');
 	},
 	"^// ": (text) => '<!-- [' + text + '] -->',
 	"^> ": (text) =>
