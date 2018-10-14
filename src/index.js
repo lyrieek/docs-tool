@@ -20,6 +20,7 @@ export default class DocsTool {
 		this.result = '';
 		const $parser = this.splitParser();
 		this.content.split('\n').map((text) => {
+			let notAnalysis = true;
 			for (let i in $parser) {
 				const item = $parser[i];
 				if (specialItem) {
@@ -36,9 +37,11 @@ export default class DocsTool {
 					item.content = '';
 					return specialItem = item;
 				}
-				return this.result += item.method(text);
+				notAnalysis = false;
+				text = item.method(text);
 			}
-			this.result += `<p>${text}</p>`;
+			this.result += notAnalysis ? `<p>${text}</p>` : text;
+			// notAnalysis && (this.result += `<p>${text}</p>`);
 		});
 		this.analysisEnd = true;
 	}
