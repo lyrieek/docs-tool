@@ -2,8 +2,13 @@ import parser from './parser'
 
 export default class DocsTool {
 
-	constructor(content) {
-		this.content = content || '';
+	constructor(param) {
+		this.content = '';
+		if (param instanceof HTMLElement) {
+			this.elem = param;
+		} else {
+			this.content = param || '';
+		}
 		this.result = '';
 		this.analysisEnd = false;
 	}
@@ -12,6 +17,7 @@ export default class DocsTool {
 		return `<${labelName}>${content}</${labelName}>`;
 	}
 
+	//解析
 	analysis() {
 		if (this.analysisEnd) {
 			return;
@@ -46,6 +52,7 @@ export default class DocsTool {
 		this.analysisEnd = true;
 	}
 
+	//拆分解析式
 	splitParser() {
 		const parserList = [];
 		for (let item in parser) {
@@ -71,10 +78,22 @@ export default class DocsTool {
 		return parserList;
 	}
 
+	//将内容渲染到元素上
 	preview(elem) {
+		if (elem) {
+			this.elem = elem;
+		}
+		elem = this.elem;
 		elem.innerHTML = "Loading...";
 		this.analysis();
 		elem.innerHTML = this.result;
+	}
+
+	//刷新内容
+	refresh(newContent) {
+		this.content = newContent;
+		this.analysisEnd = false;
+		this.preview();
 	}
 
 }
