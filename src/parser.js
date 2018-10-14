@@ -1,6 +1,6 @@
 const replaceMatch = function(fn) {
 	return function(text) {
-		return text.replace(new RegExp(this.match), fn);
+		return '<p>' + text.replace(new RegExp(this.match, 'g'), fn) + '</p>';
 	}
 }
 const rmWrap = function(text) {
@@ -19,18 +19,12 @@ export default {
 			<code style="white-space: pre;">${text}</code>
 		</div>`
 	},
-	"`((?!`)[\\S|\\s])+`": function(text) {
-		return text.replace(new RegExp(this.match), (item) => `<b>${rmWrap(item)}</b>`);
-	},
-	"\\*((?!\\*)[\\S|\\s])+\\*": function(text) {
-		return text.replace(new RegExp(this.match), (item) => `<i>${rmWrap(item)}</i>`);
-	},
-	"^// ": (text) => '<!-- [' + text + '] -->',
+	"`((?!`)[\\S|\\s])+`": replaceMatch((item) => `<b>${rmWrap(item)}</b>`),
+	"(?!\\\\)\\*((?!\\*)[\\S|\\s])+\\*": replaceMatch((item) => `<i>${rmWrap(item)}</i>`),
+	"\\*\\*((?!\\*\\*)[\\S|\\s])+\\**": replaceMatch((item) => `<i>${rmWrap(item)}</i>`),
+	"\\*\\*\\*((?!\\*\\*\\*)[\\S|\\s])+\\*\\*\\*": replaceMatch((item) => `<i>${rmWrap(item)}</i>`),
+	"^// ": (text) => `<!-- [${text}] -->`,
 	"\\[[a-zA-Z0-9-_]+\\]": replaceMatch((item) => `<a href="#">${item}</a>`),
-	// function(text) {
-	// 	return text.replace(new RegExp(this.match), (item) => '<a href="#">' + item + '</a>');
-	// },
-	"^> ": (text) =>
-		'<p style="text-indent:2em;background:silver;padding:5px 2px;">' + text.substring(2) + '</p>',
-	"foo": (text) => `<h3 style='color:red;'>${text}</h3>`
+	"^> ": (text) => `<p style="text-indent:2em;background:silver;padding:5px 2px;">${text}</p>`,
+	"--": () => `<hr />`
 }
