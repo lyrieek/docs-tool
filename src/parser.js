@@ -20,8 +20,8 @@ export default {
 		</div>`
 	},
 	"`((?!`)[\\S|\\s])+`": replaceMatch((item) => `<b>${rmWrap(item)}</b>`),
-	"\\\\(\\*|\\[)": replaceMatch((item) => `<span>${(item.substring(1))}</span>`),
-	"\\*((?!\\*)[\\S|\\s])+\\*": replaceMatch((item) => `<i>${rmWrap(item)}</i>`),
+	// "\\\\(\\*|\\[)": replaceMatch((item) => `<span>${(item.substring(1))}</span>`),
+	"(?!\\\\)\\*((?!\\*)[\\S|\\s])+\\*": replaceMatch((item) => `<i>${rmWrap(item)}</i>`),
 	"\\*\\*((?!\\*\\*)[\\S|\\s])+\\**": replaceMatch((item) => `<i>${rmWrap(item)}</i>`),
 	"\\*\\*\\*((?!\\*\\*\\*)[\\S|\\s])+\\*\\*\\*": replaceMatch((item) => `<i>${rmWrap(item)}</i>`),
 	"^// ": (text) => `<!-- [${text}] -->`,

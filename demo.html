@@ -6,11 +6,12 @@
 	<script type="text/javascript" src="./lib/docs-tool.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {
-			const content = document.getElementById("mdInput").value;
-			const dt = new DocsTool(content);
-			dt.preview(document.getElementById("mdPreview"));
+			const mdInput = document.getElementById("mdInput");
+			const mdPreview = document.getElementById("mdPreview");
+			(mdInput.onkeyup = function() {
+				new DocsTool(mdInput.value).preview(mdPreview);
+			})();
 		}
-		new DocsTool();
 
 	</script>
 	<style type="text/css">
@@ -55,8 +56,9 @@
 #### 44444
 ##### 55555
 --
-foo
-bar
+
+foo <span style="color:red;">red</span> font
+bar <span style="font-weight: bold;color:blue">bold & blue</span> font
 --
 click here [here] ok !;
 // comment
