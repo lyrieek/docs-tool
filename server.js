@@ -1,4 +1,4 @@
-// const liveServer = require('live-server')
+const liveServer = require('live-server')
 const rollup = require('rollup')
 const buble = require('rollup-plugin-buble')
 const commonjs = require('rollup-plugin-commonjs')
@@ -54,7 +54,9 @@ chokidar.watch([opts.srcPath], {
 	build();
 });
 
-// liveServer.start({
-// 	port: 393,
-// 	watch: ['lib', 'docs', 'themes']
-// });
+liveServer.start({
+	port: 393,
+	watch: ['lib', 'src'],
+	root: './demo.html',
+	open: false
+});
