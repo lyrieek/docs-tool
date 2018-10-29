@@ -1,4 +1,4 @@
-const liveServer = require('live-server')
+// const liveServer = require('live-server')
 const rollup = require('rollup')
 const buble = require('rollup-plugin-buble')
 const commonjs = require('rollup-plugin-commonjs')
@@ -11,7 +11,7 @@ const opts = {
 	name: 'DocsTool',
 	input: 'src/index.js',
 	srcPath: 'src',
-	output: 'docs-tool.js',
+	output: 'docs-tool.min.js',
 	version: '1.1.0'
 }
 
@@ -21,6 +21,7 @@ const build = () => rollup.rollup({
 		buble(),
 		commonjs(),
 		nodeResolve(),
+		uglify(),
 		replace({
 			__VERSION__: opts.version,
 			'process.env.SSR': false
