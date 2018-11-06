@@ -1,4 +1,4 @@
-import parser from './parser'
+import parser from './parsers/parser-basic'
 
 export default class DocsTool {
 

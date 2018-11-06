@@ -40,7 +40,6 @@ const build = () => rollup.rollup({
 	console.error(err)
 });
 
-
 build();
 
 chokidar.watch([opts.srcPath], {
