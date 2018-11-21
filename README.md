@@ -8,6 +8,8 @@ Document tools
 npm run dev
 ```
 
+> 目前启动不了，只能用file协议访问
+
 ## 拓展了哪些内容？
 1. 引入了KaTex的一些规则 (未实现)
     - delimiters 部分
