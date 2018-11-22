@@ -34,3 +34,5 @@ npm run dev
 3. 引入了postscript的画图功能 (未实现)
     - newpath 0 0 moveto 50 50 lineto closepath 基础画图命令
     - setrgbcolor fill 颜色内容
+
+后续加入配置功能
