@@ -7,6 +7,7 @@ Document tools
 ```
 npm run dev
 ```
+访问http://127.0.0.1:393/demo.html
 
 > 目前启动不了，只能用file协议访问
 
@@ -34,5 +35,3 @@ npm run dev
 3. 引入了postscript的画图功能 (未实现)
     - newpath 0 0 moveto 50 50 lineto closepath 基础画图命令
     - setrgbcolor fill 颜色内容
-
-后续加入配置功能
