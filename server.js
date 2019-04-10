@@ -55,7 +55,6 @@ chokidar.watch([opts.srcPath], {
 
 liveServer.start({
 	port: 393,
-	watch: ['lib'],
-	root: './',
+	file: 'demo.html',
 	open: false
 });
