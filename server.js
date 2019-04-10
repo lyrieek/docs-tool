@@ -11,7 +11,7 @@ const opts = {
 	name: 'DocsTool',
 	input: 'src/index.js',
 	srcPath: 'src',
-	output: 'docs-tool.min.js',
+	output: 'docs-tools.min.js',
 	version: '1.1.0'
 }
 
@@ -42,20 +42,20 @@ const build = () => rollup.rollup({
 
 build();
 
-// chokidar.watch([opts.srcPath], {
-// 	atomic: true,
-// 	awaitWriteFinish: {
-// 		stabilityThreshold: 1000,
-// 		pollInterval: 100
-// 	}
-// }).on('change', event => {
-// 	console.log("Change: " + event);
-// 	build();
-// });
+chokidar.watch([opts.srcPath], {
+	atomic: true,
+	awaitWriteFinish: {
+		stabilityThreshold: 1000,
+		pollInterval: 100
+	}
+}).on('change', event => {
+	console.log("Change: " + event);
+	build();
+});
 
-// liveServer.start({
-// 	port: 393,
-// 	watch: ['lib'],
-// 	root: './',
-// 	open: false
-// });
+liveServer.start({
+	port: 393,
+	watch: ['lib'],
+	root: './',
+	open: false
+});
