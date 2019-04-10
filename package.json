@@ -15,7 +15,9 @@
 		"themes"
 	],
 	"scripts": {
-		"dev": "node server"
+		"dev": "rollup -c -w",
+		"build": "rollup -c",
+		"server": "node server"
 	},
 	"devDependencies": {
 		"rollup": "^0.53.3",
