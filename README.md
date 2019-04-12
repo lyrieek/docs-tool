@@ -1,15 +1,20 @@
 # docs-tool
+
 Document tools
 
 将具有[拓展性](#我们拓展了哪些内容)的Markdown转换成HTML,结合了一些标记语言与排版语言
 
 - 启动环境 (监听文件并编译)
-```
-npm run dev
-```
-访问 http://127.0.0.1:393/demo.html
 
-## 拓展了哪些内容？
+``` shell
+npm start
+```
+
+访问 <http://127.0.0.1:393/>
+
+<!--
+## 拓展了哪些内容
+
 1. 引入了KaTex的一些规则 (未实现)
     - delimiters 部分
     - operators 部分
@@ -34,3 +39,4 @@ npm run dev
     - newpath 0 0 moveto 50 50 lineto closepath 基础画图命令
     - setrgbcolor fill 颜色内容
 4. 支持svg
+-->

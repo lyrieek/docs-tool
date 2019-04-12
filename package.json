@@ -17,7 +17,7 @@
 	"scripts": {
 		"dev": "rollup -c -w",
 		"build": "rollup -c",
-		"server": "node server"
+		"start": "node server"
 	},
 	"devDependencies": {
 		"rollup": "^0.53.3",

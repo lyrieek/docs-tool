@@ -42,7 +42,7 @@ const build = () => rollup.rollup({
 
 build();
 
-chokidar.watch([opts.srcPath], {
+chokidar.watch([opts.srcPath, 'demo.html'], {
 	atomic: true,
 	awaitWriteFinish: {
 		stabilityThreshold: 1000,
