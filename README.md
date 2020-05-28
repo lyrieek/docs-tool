@@ -7,7 +7,7 @@ Document tools
 ```
 npm run dev
 ```
-访问http://127.0.0.1:393/demo.html
+访问 http://127.0.0.1:393/demo.html
 
 ## 拓展了哪些内容？
 1. 引入了KaTex的一些规则 (未实现)
