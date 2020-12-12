@@ -1,3 +1,4 @@
+
 const liveServer = require('live-server')
 const rollup = require('rollup')
 const buble = require('rollup-plugin-buble')
@@ -11,7 +12,7 @@ const opts = {
 	name: 'DocsTool',
 	input: 'src/index.js',
 	srcPath: 'src',
-	output: 'docs-tools.min.js',
+	output: 'docs-tool.min.js',
 	version: '1.1.0'
 }
 
